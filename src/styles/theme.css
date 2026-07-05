@@ -403,3 +403,140 @@
 [data-public-site] [role="button"] {
   transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
+
+/* CPA Bridge public experience — Vercel-inspired, rebuilt for the existing Figma/Vite prototype */
+[data-cpa-public] {
+  --cbp-paper: #f5f1e6;
+  --cbp-paper-deep: #ebe4d3;
+  --cbp-card: #fbf8ef;
+  --cbp-forest: #14402f;
+  --cbp-forest-deep: #0d2c20;
+  --cbp-forest-soft: #1d5440;
+  --cbp-clay: #c15a34;
+  --cbp-clay-soft: #d98a5f;
+  --cbp-ink: #1a2420;
+  --cbp-muted: #5c655d;
+  --cbp-line: #d9cfb9;
+  --cbp-sand: #e3dbc7;
+  font-feature-settings: "kern", "liga", "calt";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.cbp-display {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.02;
+}
+
+.cbp-logo {
+  font-family: Georgia, "Times New Roman", serif;
+  letter-spacing: -0.035em;
+}
+
+.cbp-eyebrow {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.cbp-button,
+.cbp-nav,
+.cbp-listing-card {
+  transition:
+    transform 190ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 190ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 190ms cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 190ms cubic-bezier(0.16, 1, 0.3, 1),
+    color 190ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cbp-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 7px 18px -12px rgba(13, 44, 32, 0.7);
+}
+
+.cbp-button:active {
+  transform: translateY(0) scale(0.99);
+  box-shadow: none;
+}
+
+.cbp-listing-card:hover {
+  transform: translateY(-2px);
+  border-color: #b9af98;
+  box-shadow: 0 18px 42px -32px rgba(13, 44, 32, 0.58);
+}
+
+.cbp-grain {
+  background-image: radial-gradient(rgba(26, 36, 32, 0.055) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.cbp-grid-lines {
+  background-image:
+    linear-gradient(to right, rgba(245, 241, 230, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(245, 241, 230, 0.045) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+.cbp-marquee-track {
+  animation: cbp-marquee 42s linear infinite;
+}
+
+@keyframes cbp-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+[data-cpa-public] [data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  transition:
+    opacity 720ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 720ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--cbp-delay, 0ms);
+}
+
+[data-cpa-public] [data-reveal].cbp-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.cbp-accordion {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows 360ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 260ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cbp-accordion > div {
+  overflow: hidden;
+}
+
+.cbp-accordion.cbp-accordion-open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cbp-button,
+  .cbp-nav,
+  .cbp-listing-card,
+  .cbp-accordion,
+  [data-cpa-public] [data-reveal] {
+    transition: none !important;
+  }
+
+  .cbp-marquee-track {
+    animation: none !important;
+  }
+
+  [data-cpa-public] [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
